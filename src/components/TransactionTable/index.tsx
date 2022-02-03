@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
+import react, { useEffect, useState } from "react";
 import { api } from "../../services/api";
 
 import { Container } from "./styled";
+import React from "react";
 
 export const TransactionTable = () => {
   const [data, setDados] = useState([]);
+
   useEffect(() => {
     api.get("/transactions").then((response) => setDados(response.data));
   }, []);
+
   return (
     <Container>
       <table>
@@ -17,6 +20,7 @@ export const TransactionTable = () => {
             <th>Valor</th>
             <th>Categoria</th>
             <th>Data</th>
+            <th>Ações</th>
           </tr>
         </thead>
         <tbody>
@@ -26,6 +30,7 @@ export const TransactionTable = () => {
               <td className={value["type"]}>R$ {value["amount"]}</td>
               <td>{value["category"]}</td>
               <td>{value["createdAt"]}</td>
+              <td></td>
             </tr>
           ))}
         </tbody>
