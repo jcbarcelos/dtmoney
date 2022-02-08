@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {darken} from 'polished'
+import { darken, transparentize } from "polished";
 export const Container = styled.form`
   h2 {
     color: var(--text-title);
@@ -18,18 +18,30 @@ export const Container = styled.form`
     font-size: 1rem;
 
     & + input {
-        margin-top: 1rem;
+      margin-top: 1rem;
     }
     &::placeholder {
-        color: var(--text-body);
+      color: var(--text-body);
     }
-    
+
     &::selection {
-        border-color: var(--red);
+      border-color: var(--red);
     }
   }
 
-  button {
+  
+`;
+interface RadioBoxProps  {
+  isActive?: boolean
+  isActiveColor: 'green' | 'red';
+}
+
+const colors = {
+  green:   '#33CC95',
+  red: '#E52E40'
+}
+
+export const Button = styled.button<RadioBoxProps>`
     width: 100%;
     padding: 0 1.5rem;
     height: 4rem;
@@ -44,8 +56,8 @@ export const Container = styled.form`
     &:hover {
       filter: brightness(0.9);
     }
-  }
 `;
+
 
 export const TransectionTypeContainer = styled.div`
   margin: 1rem 0;
@@ -53,18 +65,22 @@ export const TransectionTypeContainer = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 0.5rem;
 
-  button {
+`;
+
+
+export const RadioBox = styled(Button)`
+ 
     height: 4rem;
     border: 1px solid #d7d7d7;
     border-radius: 0.25rem;
-    background: transparent;
+    background: ${(props) => props.isActive ? transparentize(0.9, colors[props.isActiveColor]) : 'transparent'};
     display: flex;
     align-items: center;
     justify-content: center;
     transition: border-color 0.2s;
 
     &:hover {
-      border-color: ${darken(0.05, '#33CC95')};
+      border-color: ${darken(0.05, "#33CC95")};
     }
 
     img {
@@ -77,7 +93,5 @@ export const TransectionTypeContainer = styled.div`
       font-size: 1rem;
       color: var(--text-title);
     }
-
-  }
-
-`
+ 
+`;
