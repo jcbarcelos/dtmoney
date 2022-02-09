@@ -8,8 +8,8 @@ import {
 import closeImg from "../../assets/close.svg";
 import incomeImg from "../../assets/income.svg";
 import outcomeImg from "../../assets/outcome.svg";
-import { FormEvent, useState, useContext } from "react";
-import { TransactionContext } from "../../TransactionContext";
+import { FormEvent, useState } from "react";
+import { useTransaction } from "../../hooks/useTransaction";
 
 interface NewTransactionModalProps {
   isOpen: boolean;
@@ -20,7 +20,7 @@ export function NewTransactionModal({
   isOpen,
   onRequestClose,
 }: NewTransactionModalProps) {
-  const { createTransaction } = useContext(TransactionContext);
+  const { createTransaction } = useTransaction();
 
   const [type, setType] = useState("deposit");
   const [title, setTitle] = useState("");
