@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import {createServer, Model} from 'miragejs'
 import {App} from './App';
 
+
 createServer({
 
   models: {
@@ -32,7 +33,9 @@ createServer({
     })
   },
 
+
   routes() {
+    
     this.namespace = 'api';
     this.get('/transactions', () => {
       return this.schema.all('transaction')
